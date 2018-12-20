@@ -43,16 +43,17 @@ Matrix3D::Matrix3D(const Matrix3D& mat)
 }
 
 // ---------------- Binary Operators ----------------
-Matrix3D& Matrix3D::operator+(const Matrix3D& rhs)
-{
-    Matrix3D *mat = new Matrix3D(row(1) + rhs.row(1), row(2) + rhs.row(2), row(3) + rhs.row(3));
-    return *mat;
-}
+//Matrix3D& Matrix3D::operator+(const Matrix3D& rhs)
+//{
+//    Matrix3D *mat = new Matrix3D(row(1) + rhs.row(1), row(2) + rhs.row(2), row(3) + rhs.row(3));
+//    return *mat;
+//}
 
 // ---------------- IO Operators ----------------
 std::ostream& operator<<(std::ostream& output, const Matrix3D& mat)
 {
     output << mat.row(1) << std::endl << mat.row(2) << std::endl << mat.row(3);
+    return output;
 }
 
 // ---------------- Extra Functions ----------------

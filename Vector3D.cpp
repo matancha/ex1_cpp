@@ -32,36 +32,26 @@ Vector3D::Vector3D(const Vector3D& old_vec)
 }
 
 // ---------------- Binary Operators ----------------
-Vector3D& Vector3D::operator+(const Vector3D& rhs)
+Vector3D Vector3D::operator+(const Vector3D& rhs) const
 {
-    auto *newVector = new Vector3D(_x + rhs._x, _y + rhs._y, _z + rhs._z);
-    return *newVector;
+    return Vector3D(_x + rhs._x, _y + rhs._y, _z + rhs._z);
 }
 
-Vector3D& Vector3D::operator+(const Vector3D& rhs) const
+Vector3D Vector3D::operator-(const Vector3D& rhs) const
 {
-    auto *newVector = new Vector3D(_x + rhs._x, _y + rhs._y, _z + rhs._z);
-    return *newVector;
-}
-
-Vector3D& Vector3D::operator-(const Vector3D& rhs)
-{
-    auto *newVector = new Vector3D(_x - rhs._x, _y - rhs._y, _z - rhs._z);
-    return *newVector;
+    return Vector3D(_x - rhs._x, _y - rhs._y, _z - rhs._z);
 }
 
 Vector3D& Vector3D::operator+=(const Vector3D& rhs)
 {
-    _x += rhs._x;
-    _y += rhs._y;
-    _z += rhs._z;
+    *this = *this + rhs;
+    return *this;
 }
 
 Vector3D& Vector3D::operator-=(const Vector3D& rhs)
 {
-    _x -= rhs._x;
-    _y -= rhs._y;
-    _z -= rhs._z;
+    *this = *this - rhs;
+    return *this;
 }
 
 Vector3D& Vector3D::operator+=(const double rhs)
@@ -69,56 +59,64 @@ Vector3D& Vector3D::operator+=(const double rhs)
     _x += rhs;
     _y += rhs;
     _z += rhs;
+    return *this;
 }
 
 Vector3D& Vector3D::operator-=(const double rhs)
 {
-    operator+=(-rhs);
+    *this += (-rhs);
+    return *this;
 }
 
-Vector3D& Vector3D::operator*(const double rhs)
+Vector3D Vector3D::operator*(const double rhs) const
 {
-    auto *newVector = new Vector3D(_x * rhs, _y * rhs, _z * rhs);
-    return *newVector;
+    return Vector3D(_x * rhs, _y * rhs, _z * rhs);
 }
 
-Vector3D& Vector3D::operator/(const double rhs)
+Vector3D Vector3D::operator/(const double rhs) const
 {
-    operator*(1/rhs);
+    return Vector3D(_x / rhs, _y / rhs, _z / rhs);
 }
 
-Vector3D& operator*(const double lhs, Vector3D& rhs)
+Vector3D operator*(const double lhs, Vector3D& rhs)
 {
-    rhs = rhs * lhs;
+    return rhs * lhs;
 }
 
 Vector3D& Vector3D::operator*=(const double rhs)
 {
-    _x *= rhs;
-    _y *= rhs;
-    _z *= rhs;
+    *this = *this * rhs;
+    return *this;
 }
 
 Vector3D& Vector3D::operator/=(const double rhs)
 {
-    operator*=(1/rhs);
+    *this = *this / rhs;
+    return *this;
 }
 
-double Vector3D::operator|(const Vector3D& rhs)
+double Vector3D::operator|(const Vector3D& rhs) const
 {
-    return sqrt(pow(_x - rhs._x, 2) + pow(_y - rhs._y, 2) + pow(_z - rhs._z, 2));
+    return dist(rhs);
 }
 
-double Vector3D::operator*(const Vector3D& rhs)
+double Vector3D::operator*(const Vector3D& rhs) const
 {
     return (_x * rhs._x + _y * rhs._y + _z * rhs._z);
 }
 
+double Vector3D::operator^(const Vector3D& rhs) const
+{
+    double cosAlpha = (*this * rhs) / (this->norm() * rhs.norm());
+    return acos(cosAlpha);
+}
+
 // ---------------- Unary Operators ----------------
 
-Vector3D& Vector3D::operator-()
+Vector3D Vector3D::operator-() const
 {
-    operator*(-1);
+    Vector3D minusVec = *this * (-1);
+    return minusVec;
 }
 
 // ---------------- Assignment Operator ----------------
@@ -127,12 +125,20 @@ Vector3D& Vector3D::operator=(const Vector3D& rhs)
     _x = rhs._x;
     _y = rhs._y;
     _z = rhs._z;
+    return *this;
 }
 
 // ---------------- IO Operators ----------------
 std::ostream& operator<<(std::ostream& output, const Vector3D& vec)
 {
     output << vec._x << " " << vec._y << " " << vec._z;
+    return output;
+}
+
+std::istream& operator>>(std::istream& input, Vector3D& vec)
+{
+    input >> vec._x >> vec._y >> vec._z;
+    return input;
 }
 
 // ---------------- Subscript Operator ----------------
@@ -150,4 +156,41 @@ double& Vector3D::operator[](int i)
     {
         return _z;
     }
+    else
+    {
+        fprintf(stderr, "Illegal index!");
+        exit(EXIT_FAILURE);
+    }
+}
+
+double Vector3D::operator[](int i) const
+{
+    if (i == 0)
+    {
+        return _x;
+    }
+    else if (i == 1)
+    {
+        return _y;
+    }
+    else if (i == 2)
+    {
+        return _z;
+    }
+    else
+    {
+        fprintf(stderr, "Illegal index!");
+        exit(EXIT_FAILURE);
+    }
+}
+
+// ---------------- Extra Functions ----------------
+double Vector3D::norm() const
+{
+    return dist(Vector3D());
+}
+
+double Vector3D::dist(const Vector3D& vec) const
+{
+    return sqrt(pow(_x - vec._x, 2) + pow(_y - vec._y, 2) + pow(_z - vec._z, 2));
 }

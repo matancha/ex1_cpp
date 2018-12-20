@@ -148,28 +148,28 @@ void testVector()
 	buffer << (f*g);
 	check(buffer, "460", "Test '*' operator. ([" + getString(f) + "] * " + "[" + getString(g) + "])");
 
-//	buffer << (a^b);
-//	check(buffer, "2.60363", "Test '^' operator. ([" + getString(a) + "] ^ " + "[" + getString(b) + "])");
-//
-//	Vector3D m = d;
-//	buffer << m;
-//	check(buffer, "15 5 10", "Test '=' operator. m = [" + getString(d) + "]");
-//
-//	std::streambuf* orig = std::cin.rdbuf();
-//	std::istringstream input("5 4 3");
-//	std::cin.rdbuf(input.rdbuf());
-//	std::cin >> f;
-//	std::cin.rdbuf(orig);
-//	buffer << f;
-//	check(buffer, "5 4 3", "Test '>>' operator. Read \"5 4 3\" from stdin into vector");
-//
-//	// Test Functions
-//
-//	buffer << a.norm();
-//	check(buffer, "3.60555", "Run \"norm()\" function. [" + getString(a) + "].norm()");
-//
-//	buffer << a.dist(b);
-//	check(buffer, "10.0499", "Run \"dist\" function. [" + getString(a) + "].dist([" + getString(b) + "])");
+	buffer << (a^b);
+	check(buffer, "2.60363", "Test '^' operator. ([" + getString(a) + "] ^ " + "[" + getString(b) + "])");
+
+	Vector3D m = d;
+	buffer << m;
+	check(buffer, "15 5 10", "Test '=' operator. m = [" + getString(d) + "]");
+
+	std::streambuf* orig = std::cin.rdbuf();
+	std::istringstream input("5 4 3");
+	std::cin.rdbuf(input.rdbuf());
+	std::cin >> f;
+	std::cin.rdbuf(orig);
+	buffer << f;
+	check(buffer, "5 4 3", "Test '>>' operator. Read \"5 4 3\" from stdin into vector");
+
+	// Test Functions
+
+	buffer << a.norm();
+	check(buffer, "3.60555", "Run \"norm()\" function. [" + getString(a) + "].norm()");
+
+	buffer << a.dist(b);
+	check(buffer, "10.0499", "Run \"dist\" function. [" + getString(a) + "].dist([" + getString(b) + "])");
 }
 
 void testMatrix() {
@@ -207,11 +207,11 @@ void testMatrix() {
 
 	// Test Operators
 
-	buffer << (b + c);
-	check(buffer, "9 2 3\n4 13 6\n7 8 17", "Test '+' operator. \n" + getString(b) + "\n  + \n" + getString(c));
-
-	buffer << (a - b);
-	check(buffer, "-8 0 0\n0 -8 0\n0 0 -8", "Test '-' operator. \n" + getString(a) + "\n  - \n" + getString(b));
+//	buffer << (b + c);
+//	check(buffer, "9 2 3\n4 13 6\n7 8 17", "Test '+' operator. \n" + getString(b) + "\n  + \n" + getString(c));
+//
+//	buffer << (a - b);
+//	check(buffer, "-8 0 0\n0 -8 0\n0 0 -8", "Test '-' operator. \n" + getString(a) + "\n  - \n" + getString(b));
 //
 //	buffer << (d * e);
 //	check(buffer, "180 216 252\n396 486 576\n612 756 900", "Test '*' operator. \n" + getString(d) + "\n  * \n" + getString(e));
