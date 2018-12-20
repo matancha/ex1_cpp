@@ -187,96 +187,96 @@ void testMatrix() {
 	// Test Constructors
 
 	buffer << a;
-	check(buffer, "0 0 0\n0 0 0\n0 0 0", "Construct a new matrix with default constructor");
+	check(buffer, "0 0 0\n0 0 0\n0 0 0", "Construct a new _matrix with default constructor");
 
 	buffer << b;
-	check(buffer, "8 0 0\n0 8 0\n0 0 8", "Construct a new matrix with a given double (8) in diagonal");
+	check(buffer, "8 0 0\n0 8 0\n0 0 8", "Construct a new _matrix with a given double (8) in diagonal");
 
 	buffer << c;
-	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Construct a new matrix with 9 given doubles");
+	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Construct a new _matrix with 9 given doubles");
 
 	buffer << d;
-	check(buffer, "2 4 6\n8 10 12\n14 16 18", "Construct a new matrix with a given [9] array");
+	check(buffer, "2 4 6\n8 10 12\n14 16 18", "Construct a new _matrix with a given [9] array");
 
 	buffer << e;
-	check(buffer, "3 6 9\n12 15 18\n21 24 27", "Construct a new matrix with a given [3][3] array");
+	check(buffer, "3 6 9\n12 15 18\n21 24 27", "Construct a new _matrix with a given [3][3] array");
 
 	Matrix3D r(c);
 	buffer << r;
-	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Construct a new matrix with copy constructor");
+	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Construct a new _matrix with copy constructor");
 
 	// Test Operators
 
-//	buffer << (b + c);
-//	check(buffer, "9 2 3\n4 13 6\n7 8 17", "Test '+' operator. \n" + getString(b) + "\n  + \n" + getString(c));
-//
-//	buffer << (a - b);
-//	check(buffer, "-8 0 0\n0 -8 0\n0 0 -8", "Test '-' operator. \n" + getString(a) + "\n  - \n" + getString(b));
-//
-//	buffer << (d * e);
-//	check(buffer, "180 216 252\n396 486 576\n612 756 900", "Test '*' operator. \n" + getString(d) + "\n  * \n" + getString(e));
-//
-//	buffer << (d * g);
-//	check(buffer, "44 104 164", "Test '*' operator. \n" + getString(d) + "\n  * \n" + getString(g));
-//
-//	std::string tempE = getString(e);
-//	e /= 3;
-//	buffer << e;
-//	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Test '/=' operator. \n" + tempE + "\n  /= \n3");
-//
-//	std::string tempC = getString(c);
-//	c *= 5;
-//	buffer << c;
-//	check(buffer, "5 10 15\n20 25 30\n35 40 45", "Test '*=' operator. \n" + tempC + "\n  *= \n 5");
-//
-//	Matrix3D m = e;
-//	buffer << m;
-//	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Test '=' operator.");
-//
+	buffer << (b + c);
+	check(buffer, "9 2 3\n4 13 6\n7 8 17", "Test '+' operator. \n" + getString(b) + "\n  + \n" + getString(c));
+
+	buffer << (a - b);
+	check(buffer, "-8 0 0\n0 -8 0\n0 0 -8", "Test '-' operator. \n" + getString(a) + "\n  - \n" + getString(b));
+
+	buffer << (d * e);
+	check(buffer, "180 216 252\n396 486 576\n612 756 900", "Test '*' operator. \n" + getString(d) + "\n  * \n" + getString(e));
+
+	buffer << (d * g);
+	check(buffer, "44 104 164", "Test '*' operator. \n" + getString(d) + "\n  * \n" + getString(g));
+
+	std::string tempE = getString(e);
+	e /= 3;
+	buffer << e;
+	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Test '/=' operator. \n" + tempE + "\n  /= \n3");
+
+	std::string tempC = getString(c);
+	c *= 5;
+	buffer << c;
+	check(buffer, "5 10 15\n20 25 30\n35 40 45", "Test '*=' operator. \n" + tempC + "\n  *= \n 5");
+
+	Matrix3D m = e;
+	buffer << m;
+	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Test '=' operator.");
+
 //	std::streambuf* orig = std::cin.rdbuf();
 //	std::istringstream input("6 2 3 4 5 8 7 9 5");
 //	std::cin.rdbuf(input.rdbuf());
 //	std::cin >> m;
 //	std::cin.rdbuf(orig);
 //	buffer << m;
-//	check(buffer, "6 2 3\n4 5 8\n7 9 5", "Test '>>' operator. Read \"6 2 3 4 5 8 7 9 5\" from stdin into matrix");
-//
-//	buffer << c[2];
-//	check(buffer, "35 40 45", "Test '[]' operator. Get [2] line of: \n" + getString(c));
-//
-//	std::string tempB = getString(b);
-//	b[0] = {5, 6, 7};
-//	buffer << b;
-//	check(buffer, "5 6 7\n0 8 0\n0 0 8", "Test '[]' operator. Change [0] line of: \n" + tempB + "\nwith [5, 6, 7]");
-//
-//	tempC = getString(c);
-//	c *= d;
-//	buffer << c;
-//	check(buffer, "300 360 420\n660 810 960\n1020 1260 1500", "Test '*=' operator. \n" + tempC + "\n  *= \n " + getString(d));
-//
-//	tempB = getString(b);
-//	tempC = getString(c);
-//	b -= c;
-//	c += d;
-//	buffer << b;
-//	check(buffer, "-295 -354 -413\n-660 -802 -960\n-1020 -1260 -1492", "Test '-=' operator. \n" + tempB + "\n  -= \n" + tempC);
-//	buffer << c;
-//	check(buffer, "302 364 426\n668 820 972\n1034 1276 1518", "Test '+=' operator. \n" + tempC + "\n  += \n" + getString(d));
-//
-//	// Test Functions
-//
-//	buffer << b.row(2);
-//	check(buffer, "-1020 -1260 -1492", "Run \"row(2)\" function on: \n" + getString(b));
-//
-//	buffer << c.column(1);
-//	check(buffer, "364 820 1276", "Run \"column(1)\" function on: \n" + getString(c));
-//
-//	buffer << d.trace();
-//	check(buffer, "30", "Run \"trace()\" function on: \n" + getString(d));
-//
-//	buffer << b.determinant();
-//	check(buffer, "193520", "Run \"determinant()\" function on: \n" + getString(b));
-//
+//	check(buffer, "6 2 3\n4 5 8\n7 9 5", "Test '>>' operator. Read \"6 2 3 4 5 8 7 9 5\" from stdin into _matrix");
+
+	buffer << c[2];
+	check(buffer, "35 40 45", "Test '[]' operator. Get [2] line of: \n" + getString(c));
+
+	std::string tempB = getString(b);
+	b[0] = {5, 6, 7};
+	buffer << b;
+	check(buffer, "5 6 7\n0 8 0\n0 0 8", "Test '[]' operator. Change [0] line of: \n" + tempB + "\nwith [5, 6, 7]");
+
+	tempC = getString(c);
+	c *= d;
+	buffer << c;
+	check(buffer, "300 360 420\n660 810 960\n1020 1260 1500", "Test '*=' operator. \n" + tempC + "\n  *= \n " + getString(d));
+
+	tempB = getString(b);
+	tempC = getString(c);
+	b -= c;
+	c += d;
+	buffer << b;
+	check(buffer, "-295 -354 -413\n-660 -802 -960\n-1020 -1260 -1492", "Test '-=' operator. \n" + tempB + "\n  -= \n" + tempC);
+	buffer << c;
+	check(buffer, "302 364 426\n668 820 972\n1034 1276 1518", "Test '+=' operator. \n" + tempC + "\n  += \n" + getString(d));
+
+	// Test Functions
+
+	buffer << b.row(2);
+	check(buffer, "-1020 -1260 -1492", "Run \"row(2)\" function on: \n" + getString(b));
+
+	buffer << c.column(1);
+	check(buffer, "364 820 1276", "Run \"column(1)\" function on: \n" + getString(c));
+
+	buffer << d.trace();
+	check(buffer, "30", "Run \"trace()\" function on: \n" + getString(d));
+
+	buffer << b.determinant();
+	check(buffer, "193520", "Run \"determinant()\" function on: \n" + getString(b));
+
 }
 
 int main()

@@ -14,15 +14,31 @@ public:
              double num7, double num8, double num9);
     Matrix3D(double nums[9]);
     Matrix3D(double nums[3][3]);
-    Matrix3D(Vector3D& vec1, Vector3D& vec2, Vector3D& vec3);
+    Matrix3D(Vector3D vec1, Vector3D vec2, Vector3D vec3);
     Matrix3D(const Matrix3D& mat);
 
-//    Matrix3D& operator+(const Matrix3D& rhs);
+    Matrix3D operator+(const Matrix3D& rhs) const;
+    Matrix3D operator-(const Matrix3D& rhs) const;
+    Matrix3D operator*(const Matrix3D& rhs) const;
+    Vector3D operator*(const Vector3D& rhs) const;
+    Matrix3D& operator*=(double rhs);
+    Matrix3D& operator+=(const Matrix3D& rhs);
+    Matrix3D& operator-=(const Matrix3D& rhs);
+    Matrix3D& operator*=(const Matrix3D& rhs);
+    Matrix3D& operator/=(double rhs);
+    Matrix3D& operator=(const Matrix3D& rhs);
     friend std::ostream& operator<<(std::ostream &output, const Matrix3D &mat);
-    const Vector3D row(short num) const;
+//    friend std::istream& operator<<(std::ostream &output, Matrix3D &mat);
+    Vector3D& operator[](short i);
+    Vector3D operator[](short i) const;
+
+    Vector3D row(short num) const;
+    Vector3D column(short num) const;
+    double trace() const;
+    double determinant() const;
 
 private:
-    std::array<Vector3D, 3> matrix;
+    std::array<Vector3D, 3> _matrix;
 };
 
 #endif //EX1_CPP_MATRIX3D_H
