@@ -190,7 +190,7 @@ Matrix3D& Matrix3D::operator*=(const Matrix3D& rhs)
  */
 Matrix3D& Matrix3D::operator/=(const double rhs)
 {
-    *this = *this * (1/rhs);
+    *this = *this * (1 / rhs);
     return *this;
 }
 
@@ -215,7 +215,7 @@ Matrix3D& Matrix3D::operator=(const Matrix3D& rhs)
  */
 std::ostream& operator<<(std::ostream& output, const Matrix3D& mat)
 {
-    output << mat.row(0) << std::endl << mat.row(1) << std::endl << mat.row(2);
+    output << mat.row(0) << std::endl << mat.row(1) << std::endl << mat.row(2) << std::endl;
     return output;
 }
 

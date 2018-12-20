@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+/**
+ * Class representing a 3D matrix
+ */
 class Vector3D
 {
 public:
@@ -28,50 +31,139 @@ public:
      */
     Vector3D(const Vector3D &old_vec);
 
-    /* Plus operator */
+    /**
+     * Plus operator
+     * @param rhs
+     * @return
+     */
     Vector3D operator+(const Vector3D& rhs) const;
-    /* Minus operator */
+    /**
+     * Minus operator
+     * @param rhs
+     * @return
+     */
     Vector3D operator-(const Vector3D& rhs) const;
-    /* Increment plus operator */
+    /**
+     * Increment plus operator
+     * @param rhs
+     * @return
+     */
     Vector3D& operator+=(const Vector3D& rhs);
-    /* Decrement minus operator */
+    /**
+     * Decrement minus operator
+     * @param rhs
+     * @return
+     */
     Vector3D& operator-=(const Vector3D& rhs);
-    /* Increment by number operator */
+    /**
+     * Increment by number operator
+     * @param rhs
+     * @return
+     */
     Vector3D& operator+=(double rhs);
-    /* Decrement by number operator */
+    /**
+     * Decrement by number operator
+     * @param rhs
+     * @return
+     */
     Vector3D& operator-=(double rhs);
-    /* Multiply by number */
+    /**
+     * Multiply by number
+     * @param rhs
+     * @return
+     */
     Vector3D operator*(double rhs) const;
-    /* Divide by number */
+    /**
+     * Divide by number
+     * @param rhs
+     * @return
+     */
     Vector3D operator/(double rhs) const;
-    /* Multiply by number */
+    /**
+     * Multiply by number
+     * @param lhs
+     * @param rhs
+     * @return
+     */
     friend Vector3D operator*(double lhs, Vector3D& rhs);
-    /* Multiply increment by number */
+    /**
+     * Multiply increment by number
+     * @param rhs
+     * @return
+     */
     Vector3D& operator*=(double rhs);
-    /* Divide increment by number */
+    /**
+     * Divide increment by number
+     * @param rhs
+     * @return
+     */
     Vector3D& operator/=(double rhs);
-    /* Calculate distance between vectors */
+    /**
+     * Calculate distance between vectors
+     * @param rhs
+     * @return
+     */
     double operator|(const Vector3D& rhs) const;
-    /* Calculate scalar product */
+    /**
+     * Calculate scalar product
+     * @param rhs
+     * @return
+     */
     double operator*(const Vector3D& rhs) const;
-    /* Calculate angle between vectors */
+    /**
+     * Calculate angle between vectors
+     * @param rhs
+     * @return
+     */
     double operator^(const Vector3D& rhs) const;
-    /* Multiply vector by -1 */
+    /**
+     * Multiply vector by -1
+     * @return
+     */
     Vector3D operator-() const;
-    /* Assign vector */
+    /**
+     * Assign vector
+     * @param rhs
+     * @return
+     */
     Vector3D& operator=(const Vector3D& rhs);
-    /* Print vector */
+    /**
+     * Print vector
+     * @param output
+     * @param vec
+     * @return
+     */
     friend std::ostream& operator<<(std::ostream& output, const Vector3D& vec);
-    /* Get vector from input */
+    /**
+     * Get vector from input
+     * @param input
+     * @param vec
+     * @return
+     */
     friend std::istream& operator>>(std::istream& input, Vector3D& vec);
-    /* Write-access to row */
+    /**
+     * Write-access to row
+     * @param i
+     * @return
+     */
     double& operator[](int i);
-    /* Read-access to row */
+    /**
+     * Read-access to row
+     * @param i
+     * @return
+     */
     double operator[](int i) const;
 
-    /* Calculate norm */
+    /**
+     * Calculate norm
+     * @return
+     */
     double norm() const;
-    /* Calculate distance between vectors */
+    /**
+     * Calculate distance between vectors
+     * @param vec
+     * @return
+     */
     double dist(const Vector3D& vec) const;
 
 private:

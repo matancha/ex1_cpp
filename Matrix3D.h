@@ -4,6 +4,9 @@
 #include "Vector3D.h"
 #include <array>
 
+/**
+ * Class representing a 3D matrix
+ */
 class Matrix3D
 {
 public:
@@ -53,42 +56,114 @@ public:
      */
     Matrix3D(const Matrix3D& mat);
 
-    /* Plus operator */
+    /**
+     * Plus operator
+     * @param rhs
+     * @return
+     */
     Matrix3D operator+(const Matrix3D& rhs) const;
-    /* Minus operator */
+    /**
+     * Minus operator
+     * @param rhs
+     * @return
+     */
     Matrix3D operator-(const Matrix3D& rhs) const;
-    /* Matrix multiplication */
+    /**
+     * Matrix multiplication
+     * @param rhs
+     * @return
+     */
     Matrix3D operator*(const Matrix3D& rhs) const;
-    /* Multiply matrix by vector */
+    /**
+     * Multiply matrix by vector
+     * @param rhs
+     * @return
+     */
     Vector3D operator*(const Vector3D& rhs) const;
-    /* Multiply matrix by constant */
+    /**
+     * Multiply matrix by constant
+     * @param rhs
+     * @return
+     */
     Matrix3D& operator*=(double rhs);
-    /* Add to matrix */
+    /**
+     * Add to matrix
+     * @param rhs
+     * @return
+     */
     Matrix3D& operator+=(const Matrix3D& rhs);
-    /* Substract from matrix */
+    /**
+     * Subtract from matrix
+     * @param rhs
+     * @return
+     */
     Matrix3D& operator-=(const Matrix3D& rhs);
-    /* Multiply by matrix */
+    /**
+     * Multiply by matrix
+     * @param rhs
+     * @return
+     */
     Matrix3D& operator*=(const Matrix3D& rhs);
-    /* Divide matrix by constant */
+    /**
+     * Divide matrix by constant
+     * @param rhs
+     * @return
+     */
     Matrix3D& operator/=(double rhs);
-    /* Assign matrix */
+    /**
+     * Assign matrix
+     * @param rhs
+     * @return
+     */
     Matrix3D& operator=(const Matrix3D& rhs);
-    /* Print matrix */
+    /**
+     * Print matrix
+     * @param output
+     * @param mat
+     * @return
+     */
     friend std::ostream& operator<<(std::ostream &output, const Matrix3D &mat);
-    /* Get matrix from input */
+    /**
+     * Get matrix from input
+     * @param output
+     * @param mat
+     * @return
+     */
     friend std::istream& operator>>(std::istream &output, Matrix3D &mat);
-    /* Write-access row */
+    /**
+     * Write-access row
+     * @param i
+     * @return
+     */
     Vector3D& operator[](short i);
-    /* Read-access row */
+    /**
+     * Read-access row
+     * @param i
+     * @return
+     */
     Vector3D operator[](short i) const;
 
-    /* Get matrix row */
+    /**
+     * Get matrix row
+     * @param num
+     * @return
+     */
     Vector3D row(short num) const;
-    /* Get matrix column */
+    /**
+     * Get matrix column
+     * @param num
+     * @return
+     */
     Vector3D column(short num) const;
-    /* Calculate trace */
+    /**
+     * Calculate trace
+     * @return
+     */
     double trace() const;
-    /* Calculate determinant */
+    /**
+     * Calculate determinant
+     * @return
+     */
     double determinant() const;
 
 private:
