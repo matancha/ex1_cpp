@@ -18,7 +18,7 @@ bool oneErrorAtATime = false;
 bool testVectorClass = true;
 
 // "true" if you want to test Matrix3D class
-bool testMatrixClass = false;
+bool testMatrixClass = true;
 
 // =================================================================
 
@@ -233,13 +233,13 @@ void testMatrix() {
 	buffer << m;
 	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Test '=' operator.");
 
-//	std::streambuf* orig = std::cin.rdbuf();
-//	std::istringstream input("6 2 3 4 5 8 7 9 5");
-//	std::cin.rdbuf(input.rdbuf());
-//	std::cin >> m;
-//	std::cin.rdbuf(orig);
-//	buffer << m;
-//	check(buffer, "6 2 3\n4 5 8\n7 9 5", "Test '>>' operator. Read \"6 2 3 4 5 8 7 9 5\" from stdin into _matrix");
+	std::streambuf* orig = std::cin.rdbuf();
+	std::istringstream input("6 2 3 4 5 8 7 9 5");
+	std::cin.rdbuf(input.rdbuf());
+	std::cin >> m;
+	std::cin.rdbuf(orig);
+	buffer << m;
+	check(buffer, "6 2 3\n4 5 8\n7 9 5", "Test '>>' operator. Read \"6 2 3 4 5 8 7 9 5\" from stdin into _matrix");
 
 	buffer << c[2];
 	check(buffer, "35 40 45", "Test '[]' operator. Get [2] line of: \n" + getString(c));
