@@ -32,15 +32,22 @@ Matrix3D::Matrix3D(double nums[3][3])
     matrix = {Vector3D(nums[0]), Vector3D(nums[1]), Vector3D(nums[2])};
 }
 
-Matrix3D::Matrix3D(Vector3D vectors[3])
+Matrix3D::Matrix3D(Vector3D& vec1, Vector3D& vec2, Vector3D& vec3)
 {
-    matrix = {vectors[0], vectors[1], vectors[2]};
+    matrix = {vec1, vec2, vec3};
 }
 
-//Matrix3D::Matrix3D(const Matrix3D& mat)
-//{
-//
-//}
+Matrix3D::Matrix3D(const Matrix3D& mat)
+{
+    matrix = {mat.row(0), mat.row(1), mat.row(2)};
+}
+
+// ---------------- Binary Operators ----------------
+Matrix3D& Matrix3D::operator+(const Matrix3D& rhs)
+{
+    Matrix3D *mat = new Matrix3D(row(1) + rhs.row(1), row(2) + rhs.row(2), row(3) + rhs.row(3));
+    return *mat;
+}
 
 // ---------------- IO Operators ----------------
 std::ostream& operator<<(std::ostream& output, const Matrix3D& mat)
@@ -49,7 +56,7 @@ std::ostream& operator<<(std::ostream& output, const Matrix3D& mat)
 }
 
 // ---------------- Extra Functions ----------------
-const Vector3D& Matrix3D::row(short num) const
+const Vector3D Matrix3D::row(short num) const
 {
     return matrix[num];
 }

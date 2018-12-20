@@ -11,21 +11,22 @@ public:
     Vector3D(double numArr[3]);
     Vector3D(const Vector3D &old_vec);
 
-    Vector3D& operator+(const Vector3D& rval);
-    Vector3D& operator-(const Vector3D& rval);
-    Vector3D& operator+=(const Vector3D& rval);
-    Vector3D& operator-=(const Vector3D& rval);
-    Vector3D& operator+=(double rval);
-    Vector3D& operator-=(double rval);
-    Vector3D& operator*(double rval);
-    Vector3D& operator/(double rval);
-    friend Vector3D& operator*(double lval, Vector3D& rval);
-    Vector3D& operator*=(double rval);
-    Vector3D& operator/=(double rval);
-    double operator|(const Vector3D& rval);
-    double operator*(const Vector3D& rval);
+    Vector3D& operator+(const Vector3D& rhs);
+    Vector3D& operator+(const Vector3D& rhs) const;
+    Vector3D& operator-(const Vector3D& rhs);
+    Vector3D& operator+=(const Vector3D& rhs);
+    Vector3D& operator-=(const Vector3D& rhs);
+    Vector3D& operator+=(double rhs);
+    Vector3D& operator-=(double rhs);
+    Vector3D& operator*(double rhs);
+    Vector3D& operator/(double rhs);
+    friend Vector3D& operator*(double lhs, Vector3D& rhs);
+    Vector3D& operator*=(double rhs);
+    Vector3D& operator/=(double rhs);
+    double operator|(const Vector3D& rhs);
+    double operator*(const Vector3D& rhs);
     Vector3D& operator-();
-    Vector3D& operator=(const Vector3D& rval);
+    Vector3D& operator=(const Vector3D& rhs);
     friend std::ostream& operator<<(std::ostream &output, const Vector3D &vec);
     double& operator[](int i);
 

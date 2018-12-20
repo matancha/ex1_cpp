@@ -32,80 +32,86 @@ Vector3D::Vector3D(const Vector3D& old_vec)
 }
 
 // ---------------- Binary Operators ----------------
-Vector3D& Vector3D::operator+(const Vector3D& rval)
+Vector3D& Vector3D::operator+(const Vector3D& rhs)
 {
-    auto *newVector = new Vector3D(_x + rval._x, _y + rval._y, _z + rval._z);
+    auto *newVector = new Vector3D(_x + rhs._x, _y + rhs._y, _z + rhs._z);
     return *newVector;
 }
 
-Vector3D& Vector3D::operator-(const Vector3D& rval)
+Vector3D& Vector3D::operator+(const Vector3D& rhs) const
 {
-    auto *newVector = new Vector3D(_x - rval._x, _y - rval._y, _z - rval._z);
+    auto *newVector = new Vector3D(_x + rhs._x, _y + rhs._y, _z + rhs._z);
     return *newVector;
 }
 
-Vector3D& Vector3D::operator+=(const Vector3D& rval)
+Vector3D& Vector3D::operator-(const Vector3D& rhs)
 {
-    _x += rval._x;
-    _y += rval._y;
-    _z += rval._z;
-}
-
-Vector3D& Vector3D::operator-=(const Vector3D& rval)
-{
-    _x -= rval._x;
-    _y -= rval._y;
-    _z -= rval._z;
-}
-
-Vector3D& Vector3D::operator+=(const double rval)
-{
-    _x += rval;
-    _y += rval;
-    _z += rval;
-}
-
-Vector3D& Vector3D::operator-=(const double rval)
-{
-    operator+=(-rval);
-}
-
-Vector3D& Vector3D::operator*(const double rval)
-{
-    auto *newVector = new Vector3D(_x * rval, _y * rval, _z * rval);
+    auto *newVector = new Vector3D(_x - rhs._x, _y - rhs._y, _z - rhs._z);
     return *newVector;
 }
 
-Vector3D& Vector3D::operator/(const double rval)
+Vector3D& Vector3D::operator+=(const Vector3D& rhs)
 {
-    operator*(1/rval);
+    _x += rhs._x;
+    _y += rhs._y;
+    _z += rhs._z;
 }
 
-Vector3D& operator*(const double lval, Vector3D& rval)
+Vector3D& Vector3D::operator-=(const Vector3D& rhs)
 {
-    rval = rval * lval;
+    _x -= rhs._x;
+    _y -= rhs._y;
+    _z -= rhs._z;
 }
 
-Vector3D& Vector3D::operator*=(const double rval)
+Vector3D& Vector3D::operator+=(const double rhs)
 {
-    _x *= rval;
-    _y *= rval;
-    _z *= rval;
+    _x += rhs;
+    _y += rhs;
+    _z += rhs;
 }
 
-Vector3D& Vector3D::operator/=(const double rval)
+Vector3D& Vector3D::operator-=(const double rhs)
 {
-    operator*=(1/rval);
+    operator+=(-rhs);
 }
 
-double Vector3D::operator|(const Vector3D& rval)
+Vector3D& Vector3D::operator*(const double rhs)
 {
-    return sqrt(pow(_x - rval._x, 2) + pow(_y - rval._y, 2) + pow(_z - rval._z, 2));
+    auto *newVector = new Vector3D(_x * rhs, _y * rhs, _z * rhs);
+    return *newVector;
 }
 
-double Vector3D::operator*(const Vector3D& rval)
+Vector3D& Vector3D::operator/(const double rhs)
 {
-    return (_x * rval._x + _y * rval._y + _z * rval._z);
+    operator*(1/rhs);
+}
+
+Vector3D& operator*(const double lhs, Vector3D& rhs)
+{
+    rhs = rhs * lhs;
+}
+
+Vector3D& Vector3D::operator*=(const double rhs)
+{
+    _x *= rhs;
+    _y *= rhs;
+    _z *= rhs;
+}
+
+Vector3D& Vector3D::operator/=(const double rhs)
+{
+    operator*=(1/rhs);
+}
+
+double Vector3D::operator|(const Vector3D& rhs)
+{
+    return sqrt(pow(_x - rhs._x, 2) + pow(_y - rhs._y, 2) + pow(_z - rhs._z, 2));
+}
+
+double Vector3D::operator*(const Vector3D& rhs)
+{
+    return (_x * rhs._x + _y * rhs._y + _z * rhs._z);
 }
 
 // ---------------- Unary Operators ----------------
@@ -116,11 +122,11 @@ Vector3D& Vector3D::operator-()
 }
 
 // ---------------- Assignment Operator ----------------
-Vector3D& Vector3D::operator=(const Vector3D& rval)
+Vector3D& Vector3D::operator=(const Vector3D& rhs)
 {
-    _x = rval._x;
-    _y = rval._y;
-    _z = rval._z;
+    _x = rhs._x;
+    _y = rhs._y;
+    _z = rhs._z;
 }
 
 // ---------------- IO Operators ----------------

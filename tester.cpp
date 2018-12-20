@@ -52,12 +52,12 @@ std::string getString(Vector3D& vector)
 	return buffer.str();
 }
 
-//std::string getString(Matrix3D& matrix)
-//{
-//	std::stringstream buffer;
-//	buffer << matrix;
-//	return buffer.str();
-//}
+std::string getString(Matrix3D& matrix)
+{
+	std::stringstream buffer;
+	buffer << matrix;
+	return buffer.str();
+}
 
 void testVector()
 {
@@ -188,30 +188,30 @@ void testMatrix() {
 
 	buffer << a;
 	check(buffer, "0 0 0\n0 0 0\n0 0 0", "Construct a new matrix with default constructor");
-//
-//	buffer << b;
-//	check(buffer, "8 0 0\n0 8 0\n0 0 8", "Construct a new matrix with a given double (8) in diagonal");
-//
-//	buffer << c;
-//	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Construct a new matrix with 9 given doubles");
-//
-//	buffer << d;
-//	check(buffer, "2 4 6\n8 10 12\n14 16 18", "Construct a new matrix with a given [9] array");
-//
-//	buffer << e;
-//	check(buffer, "3 6 9\n12 15 18\n21 24 27", "Construct a new matrix with a given [3][3] array");
-//
-//	Matrix3D r(c);
-//	buffer << r;
-//	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Construct a new matrix with copy constructor");
-//
-//	// Test Operators
-//
-//	buffer << (b + c);
-//	check(buffer, "9 2 3\n4 13 6\n7 8 17", "Test '+' operator. \n" + getString(b) + "\n  + \n" + getString(c));
-//
-//	buffer << (a - b);
-//	check(buffer, "-8 0 0\n0 -8 0\n0 0 -8", "Test '-' operator. \n" + getString(a) + "\n  - \n" + getString(b));
+
+	buffer << b;
+	check(buffer, "8 0 0\n0 8 0\n0 0 8", "Construct a new matrix with a given double (8) in diagonal");
+
+	buffer << c;
+	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Construct a new matrix with 9 given doubles");
+
+	buffer << d;
+	check(buffer, "2 4 6\n8 10 12\n14 16 18", "Construct a new matrix with a given [9] array");
+
+	buffer << e;
+	check(buffer, "3 6 9\n12 15 18\n21 24 27", "Construct a new matrix with a given [3][3] array");
+
+	Matrix3D r(c);
+	buffer << r;
+	check(buffer, "1 2 3\n4 5 6\n7 8 9", "Construct a new matrix with copy constructor");
+
+	// Test Operators
+
+	buffer << (b + c);
+	check(buffer, "9 2 3\n4 13 6\n7 8 17", "Test '+' operator. \n" + getString(b) + "\n  + \n" + getString(c));
+
+	buffer << (a - b);
+	check(buffer, "-8 0 0\n0 -8 0\n0 0 -8", "Test '-' operator. \n" + getString(a) + "\n  - \n" + getString(b));
 //
 //	buffer << (d * e);
 //	check(buffer, "180 216 252\n396 486 576\n612 756 900", "Test '*' operator. \n" + getString(d) + "\n  * \n" + getString(e));
